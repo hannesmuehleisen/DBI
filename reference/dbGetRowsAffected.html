@@ -94,14 +94,14 @@ by a data manipulation statement.</p>
 
     <p><code>dbGetRowsAffected()</code> returns a scalar number string (integer or numeric),
 the number of rows affected by a data manipulation statement
-issued with <code>DBI::dbSendStatement()</code>.
+issued with <code><a href='dbSendStatement.html'>dbSendStatement()</a></code>.
 The value is available directly after the call
-and does not change after calling <code>DBI::dbFetch()</code>.
-For queries issued with <code>DBI::dbSendQuery()</code>,
+and does not change after calling <code><a href='dbFetch.html'>dbFetch()</a></code>.
+For queries issued with <code><a href='dbSendQuery.html'>dbSendQuery()</a></code>,
 zero is returned before
 and after the call to <code>dbFetch()</code>.
 Attempting to get the rows affected for a result set cleared with
-<code>DBI::dbClearResult()</code> gives an error.</p>
+<code><a href='dbClearResult.html'>dbClearResult()</a></code> gives an error.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

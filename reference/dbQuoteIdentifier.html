@@ -104,14 +104,14 @@ but not for an empty string.</p>
     <p>When passing the returned object again to <code>dbQuoteIdentifier()</code>
 as <code>x</code>
 argument, it is returned unchanged.
-Passing objects of class DBI::SQL should also return them unchanged.
-(For backends it may be most convenient to return DBI::SQL objects
+Passing objects of class <a href='SQL.html'>SQL</a> should also return them unchanged.
+(For backends it may be most convenient to return <a href='SQL.html'>SQL</a> objects
 to achieve this behavior, but this is not required.)</p>
     
     <h2 class="hasAnchor" id="specification"><a class="anchor" href="#specification"></a>Specification</h2>
 
     <p></p>
-    <p>Calling <code>DBI::dbGetQuery()</code> for a query of the format <code>SELECT 1 AS ...</code>
+    <p>Calling <code><a href='dbGetQuery.html'>dbGetQuery()</a></code> for a query of the format <code>SELECT 1 AS ...</code>
 returns a data frame with the identifier, unquoted, as column name.
 Quoted identifiers can be used as table and column names in SQL queries,
 in particular in queries like <code>SELECT 1 AS ...</code>

@@ -94,13 +94,13 @@ A data manipulation statement is always completed.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>dbHasCompleted()</code> returns a logical scalar.
-For a query initiated by <code>DBI::dbSendQuery()</code> with non-empty result set,
+For a query initiated by <code><a href='dbSendQuery.html'>dbSendQuery()</a></code> with non-empty result set,
 <code>dbHasCompleted()</code> returns <code>FALSE</code> initially
-and <code>TRUE</code> after calling <code>DBI::dbFetch()</code> without limit.
-For a query initiated by <code>DBI::dbSendStatement()</code>,
+and <code>TRUE</code> after calling <code><a href='dbFetch.html'>dbFetch()</a></code> without limit.
+For a query initiated by <code><a href='dbSendStatement.html'>dbSendStatement()</a></code>,
 <code>dbHasCompleted()</code> always returns <code>TRUE</code>.
 Attempting to query completion status for a result set cleared with
-<code>DBI::dbClearResult()</code> gives an error.</p>
+<code><a href='dbClearResult.html'>dbClearResult()</a></code> gives an error.</p>
     
     <h2 class="hasAnchor" id="specification"><a class="anchor" href="#specification"></a>Specification</h2>
 

@@ -100,9 +100,9 @@ before calling <code><a href='dbFetch.html'>dbFetch()</a></code> or <code><a hre
 
     <p><code>dbBind()</code> returns the result set,
 invisibly,
-for queries issued by <code>DBI::dbSendQuery()</code>
+for queries issued by <code><a href='dbSendQuery.html'>dbSendQuery()</a></code>
 and also for data manipulation statements issued by
-<code>DBI::dbSendStatement()</code>.
+<code><a href='dbSendStatement.html'>dbSendStatement()</a></code>.
 Calling <code>dbBind()</code> for a query without parameters
 raises an error.
 Binding too many
@@ -150,12 +150,12 @@ Known examples are:
     <p></p>
     <p><span class="pkg">DBI</span> clients execute parametrized statements as follows:
 <ol>
-<li> Call <code>DBI::dbSendQuery()</code> or <code>DBI::dbSendStatement()</code> with a query or statement
+<li> Call <code><a href='dbSendQuery.html'>dbSendQuery()</a></code> or <code><a href='dbSendStatement.html'>dbSendStatement()</a></code> with a query or statement
 that contains placeholders,
-store the returned DBI::DBIResult object in a variable.
+store the returned <a href='DBIResult-class.html'>DBIResult</a> object in a variable.
 Mixing placeholders (in particular, named and unnamed ones) is not
 recommended.
-It is good practice to register a call to <code>DBI::dbClearResult()</code> via
+It is good practice to register a call to <code><a href='dbClearResult.html'>dbClearResult()</a></code> via
 <code>on.exit()</code> right after calling <code>dbSendQuery()</code> or <code>dbSendStatement()</code>
 (see the last enumeration item).
 </li>
@@ -174,10 +174,10 @@ object.
 <li> Retrieve the data or the number of affected rows from the <code>DBIResult</code> object.
 <ul>
 <li> For queries issued by <code>dbSendQuery()</code>,
-call <code>DBI::dbFetch()</code>.
+call <code><a href='dbFetch.html'>dbFetch()</a></code>.
 </li>
 <li> For statements issued by <code>dbSendStatements()</code>,
-call <code>DBI::dbGetRowsAffected()</code>.
+call <code><a href='dbGetRowsAffected.html'>dbGetRowsAffected()</a></code>.
 (Execution begins immediately after the <code>dbBind()</code> call,
 the statement is processed entirely before the function returns.)
 </li>
@@ -185,7 +185,7 @@ the statement is processed entirely before the function returns.)
     <p></li>
 <li> Repeat 2. and 3. as necessary.
 </li>
-<li> Close the result set via <code>DBI::dbClearResult()</code>.
+<li> Close the result set via <code><a href='dbClearResult.html'>dbClearResult()</a></code>.
 </li>
 </ol></p>
     <p>The elements of the <code>params</code> argument do not need to be scalars,
