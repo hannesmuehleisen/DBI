@@ -85,10 +85,11 @@ converting row names to a column and specifying SQL data types for fields.</p>
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>conn</dt>
-      <dd>A <code><a href='DBIConnection-class.html'>DBIConnection</a></code> object, as returned by
+      <dd>A <a href='DBIConnection-class.html'>DBIConnection</a> object, as returned by
 <code><a href='dbConnect.html'>dbConnect()</a></code>.</dd>
       <dt>name</dt>
-      <dd>A character string specifying a DBMS table name.</dd>
+      <dd>A character string specifying the unquoted DBMS table name,
+or the result of a call to <code><a href='dbQuoteIdentifier.html'>dbQuoteIdentifier()</a></code>.</dd>
       <dt>value</dt>
       <dd>a data.frame (or coercible to data.frame).</dd>
       <dt>...</dt>

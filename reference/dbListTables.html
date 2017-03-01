@@ -76,7 +76,9 @@
     </div>
 
     
-    <p>This should, where possible, include temporary tables, and views.</p>
+    <p>Returns the unquoted names of remote tables accessible through this
+connection.
+This should, where possible, include temporary tables, and views.</p>
     
 
     <pre><span class='fu'>dbListTables</span>(<span class='no'>conn</span>, <span class='no'>...</span>)</pre>
@@ -84,7 +86,7 @@
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>conn</dt>
-      <dd>A <code><a href='DBIConnection-class.html'>DBIConnection</a></code> object, as returned by
+      <dd>A <a href='DBIConnection-class.html'>DBIConnection</a> object, as returned by
 <code><a href='dbConnect.html'>dbConnect()</a></code>.</dd>
       <dt>...</dt>
       <dd>Other parameters passed on to methods.</dd>
@@ -107,7 +109,10 @@ it is also removed from the list of database tables.</p>
     <h2 class="hasAnchor" id="additional-arguments"><a class="anchor" href="#additional-arguments"></a>Additional arguments</h2>
 
     <p></p>
-    <p>TBD (schema support).</p>
+    <p>TBD (schema support).
+TBD: <code>temporary = NA</code></p>
+    <p>They must be provided as named arguments.
+See the &quot;Specification&quot; section for details on their usage.</p>
     
     <h2 class="hasAnchor" id="specification"><a class="anchor" href="#specification"></a>Specification</h2>
 

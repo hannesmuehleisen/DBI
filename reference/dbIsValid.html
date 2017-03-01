@@ -85,9 +85,9 @@ been disconnected or cleared).</p>
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>dbObj</dt>
-      <dd>An object inheriting from <code><a href='DBIObject-class.html'>DBIObject</a></code>,
-i.e. <code><a href='DBIDriver-class.html'>DBIDriver</a></code>, <code><a href='DBIConnection-class.html'>DBIConnection</a></code>,
-or a <code><a href='DBIResult-class.html'>DBIResult</a></code></dd>
+      <dd>An object inheriting from <a href='DBIObject-class.html'>DBIObject</a>,
+i.e. <a href='DBIDriver-class.html'>DBIDriver</a>, <a href='DBIConnection-class.html'>DBIConnection</a>,
+or a <a href='DBIResult-class.html'>DBIResult</a></dd>
       <dt>...</dt>
       <dd>Other arguments to methods.</dd>
     </dl>
@@ -99,8 +99,11 @@ or a <code><a href='DBIResult-class.html'>DBIResult</a></code></dd>
 <code>FALSE</code> otherwise.
 A <a href='DBIConnection-class.html'>DBIConnection</a> object is initially valid,
 and becomes invalid after disconnecting with <code><a href='dbDisconnect.html'>dbDisconnect()</a></code>.
-A <a href='DBIResult-class.html'>DBIResult</a> object is initially valid,
+A <a href='DBIResult-class.html'>DBIResult</a> object is valid after a call to <code><a href='dbSendQuery.html'>dbSendQuery()</a></code>,
 and stays valid even after all rows have been fetched;
+only clearing it with <code><a href='dbClearResult.html'>dbClearResult()</a></code> invalidates it.
+A <a href='DBIResult-class.html'>DBIResult</a> object is also valid after a call to <code><a href='dbSendStatement.html'>dbSendStatement()</a></code>,
+and stays valid after querying the number of rows affected;
 only clearing it with <code><a href='dbClearResult.html'>dbClearResult()</a></code> invalidates it.
 If the connection to the database system is dropped (e.g., due to
 connectivity problems, server failure, etc.), <code>dbIsValid()</code> should return

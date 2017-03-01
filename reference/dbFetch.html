@@ -91,6 +91,7 @@ as a data.frame.</p>
 <code><a href='dbSendQuery.html'>dbSendQuery()</a></code>.</dd>
       <dt>n</dt>
       <dd>maximum number of records to retrieve per fetch. Use <code>n = -1</code>
+or <code>n = Inf</code>
 to retrieve all pending records.  Some implementations may recognize other
 special values.</dd>
       <dt>...</dt>
@@ -107,7 +108,7 @@ or has one
 or zero rows.
 An attempt to fetch from a closed result set raises an error.
 If the <code>n</code> argument is not an atomic whole number
-greater or equal to -1, an error is raised,
+greater or equal to -1 or Inf, an error is raised,
 but a subsequent call to <code>dbFetch()</code> with proper <code>n</code> argument succeeds.
 Calling <code>dbFetch()</code> on a result set from a data manipulation query
 created by <code><a href='dbSendStatement.html'>dbSendStatement()</a></code>
@@ -115,11 +116,10 @@ can be fetched and return an empty data frame, with a warning.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>fetch</code> is provided for compatibility with older DBI clients - for all
-new code you are strongly encouraged to use <code>dbFetch</code>. The default
-method for <code>dbFetch</code> calls <code>fetch</code> so that it is compatible with
-existing code. Implementors are free to provide methods for <code>dbFetch</code>
-only.</p>
+    <p><code>fetch()</code> is provided for compatibility with older DBI clients - for all
+new code you are strongly encouraged to use <code>dbFetch()</code>. The default
+implementation for <code>dbFetch()</code> calls <code>fetch()</code> so that it is compatible with
+existing code. Modern backends should implement for <code>dbFetch()</code> only.</p>
     
     <h2 class="hasAnchor" id="specification"><a class="anchor" href="#specification"></a>Specification</h2>
 
@@ -134,6 +134,8 @@ A value of Inf for the <code>n</code> argument is supported
 and also returns the full result.
 If more rows than available are fetched, the result is returned in full
 without warning.
+If fewer rows than requested are returned, further fetches will
+return a data frame with zero rows.
 If zero rows are fetched, the columns of the data frame are still fully
 typed.
 Fetching fewer rows than available is permitted,

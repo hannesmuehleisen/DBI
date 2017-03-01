@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bind values to a parameterised/prepared statement — dbBind • DBI</title>
+<title>Bind values to a parameterized/prepared statement — dbBind • DBI</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -72,11 +72,11 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Bind values to a parameterised/prepared statement</h1>
+    <h1>Bind values to a parameterized/prepared statement</h1>
     </div>
 
     
-    <p>For parametrised or prepared statements,
+    <p>For parametrized or prepared statements,
 the <code><a href='dbSendQuery.html'>dbSendQuery()</a></code> and <code><a href='dbSendStatement.html'>dbSendStatement()</a></code> functions can be called with
 statements that contain placeholders for values. The <code>dbBind()</code> function
 binds these placeholders
@@ -89,9 +89,9 @@ before calling <code><a href='dbFetch.html'>dbFetch()</a></code> or <code><a hre
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>res</dt>
-      <dd>An object inheriting from <code><a href='DBIResult-class.html'>DBIResult</a></code>.</dd>
+      <dd>An object inheriting from <a href='DBIResult-class.html'>DBIResult</a>.</dd>
       <dt>params</dt>
-      <dd>A list of bindings.</dd>
+      <dd>A list of bindings, named or unnamed.</dd>
       <dt>...</dt>
       <dd>Other arguments passed on to methods.</dd>
     </dl>
@@ -238,7 +238,9 @@ even if no results are fetched between calls to <code>dbBind()</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>con</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dbConnect.html'>dbConnect</a></span>(<span class='kw'>RSQLite</span><span class='kw'>::</span><span class='fu'>SQLite</span>(), <span class='st'>":memory:"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: replacing previous import ‘DBI::coerce’ by ‘methods::coerce’ when loading ‘RSQLite’</span></div><div class='input'>
-<span class='fu'><a href='dbWriteTable.html'>dbWriteTable</a></span>(<span class='no'>con</span>, <span class='st'>"iris"</span>, <span class='no'>iris</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>iris_result</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dbSendQuery.html'>dbSendQuery</a></span>(<span class='no'>con</span>, <span class='st'>"SELECT * FROM iris WHERE [Petal.Width] &gt; ?"</span>)
+<span class='fu'><a href='dbWriteTable.html'>dbWriteTable</a></span>(<span class='no'>con</span>, <span class='st'>"iris"</span>, <span class='no'>iris</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='co'># Using the same query for different values</span>
+<span class='no'>iris_result</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dbSendQuery.html'>dbSendQuery</a></span>(<span class='no'>con</span>, <span class='st'>"SELECT * FROM iris WHERE [Petal.Width] &gt; ?"</span>)
 <span class='fu'>dbBind</span>(<span class='no'>iris_result</span>, <span class='fu'>list</span>(<span class='fl'>2.3</span>))
 <span class='fu'><a href='dbFetch.html'>dbFetch</a></span>(<span class='no'>iris_result</span>)</div><div class='output co'>#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
 #&gt; 1          6.3         3.3          6.0         2.5 virginica
@@ -248,8 +250,14 @@ even if no results are fetched between calls to <code>dbBind()</code>.</p>
 #&gt; 5          6.7         3.1          5.6         2.4 virginica
 #&gt; 6          6.7         3.3          5.7         2.5 virginica</div><div class='input'><span class='fu'>dbBind</span>(<span class='no'>iris_result</span>, <span class='fu'>list</span>(<span class='fl'>3</span>))
 <span class='fu'><a href='dbFetch.html'>dbFetch</a></span>(<span class='no'>iris_result</span>)</div><div class='output co'>#&gt; [1] Sepal.Length Sepal.Width  Petal.Length Petal.Width  Species     
-#&gt; &lt;0 rows&gt; (or 0-length row.names)</div><div class='input'>
-<span class='fu'><a href='dbClearResult.html'>dbClearResult</a></span>(<span class='no'>iris_result</span>)
+#&gt; &lt;0 rows&gt; (or 0-length row.names)</div><div class='input'><span class='fu'><a href='dbClearResult.html'>dbClearResult</a></span>(<span class='no'>iris_result</span>)
+
+<span class='co'># Executing the same statement with different values at once</span>
+<span class='no'>iris_result</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dbSendStatement.html'>dbSendStatement</a></span>(<span class='no'>con</span>, <span class='st'>"DELETE FROM iris WHERE [Species] = $species"</span>)
+<span class='fu'>dbBind</span>(<span class='no'>iris_result</span>, <span class='fu'>list</span>(<span class='kw'>species</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"setosa"</span>, <span class='st'>"versicolor"</span>, <span class='st'>"unknown"</span>)))
+<span class='fu'><a href='dbGetRowsAffected.html'>dbGetRowsAffected</a></span>(<span class='no'>iris_result</span>)</div><div class='output co'>#&gt; [1] 100</div><div class='input'><span class='fu'><a href='dbClearResult.html'>dbClearResult</a></span>(<span class='no'>iris_result</span>)
+
+<span class='fu'>nrow</span>(<span class='fu'><a href='dbReadTable.html'>dbReadTable</a></span>(<span class='no'>con</span>, <span class='st'>"iris"</span>))</div><div class='output co'>#&gt; [1] 50</div><div class='input'>
 <span class='fu'><a href='dbDisconnect.html'>dbDisconnect</a></span>(<span class='no'>con</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

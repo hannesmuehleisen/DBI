@@ -76,7 +76,8 @@
     </div>
 
     
-    <p><code>dbExecute()</code> comes with a default implementation
+    <p>Executes a statement and returns the number of rows affected.
+<code>dbExecute()</code> comes with a default implementation
 (which should work with most backends) that calls
 <code><a href='dbSendStatement.html'>dbSendStatement()</a></code>, then <code><a href='dbGetRowsAffected.html'>dbGetRowsAffected()</a></code>, ensuring that
 the result is always free-d by <code><a href='dbClearResult.html'>dbClearResult()</a></code>.</p>
@@ -87,10 +88,10 @@ the result is always free-d by <code><a href='dbClearResult.html'>dbClearResult(
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>conn</dt>
-      <dd>A <code><a href='DBIConnection-class.html'>DBIConnection</a></code> object, as returned by
+      <dd>A <a href='DBIConnection-class.html'>DBIConnection</a> object, as returned by
 <code><a href='dbConnect.html'>dbConnect()</a></code>.</dd>
       <dt>statement</dt>
-      <dd>a character vector of length 1 containing SQL.</dd>
+      <dd>a character string containing SQL.</dd>
       <dt>...</dt>
       <dd>Other parameters passed on to methods.</dd>
     </dl>
@@ -111,12 +112,7 @@ or if the statement is not a non-<code>NA</code> string.</p>
 
     <p></p>
     <p>Subclasses should override this method only if they provide some sort of
-performance optimisation.</p>
-    
-    <h2 class="hasAnchor" id="specification"><a class="anchor" href="#specification"></a>Specification</h2>
-
-    <p></p>
-    <p>No warnings occur under normal conditions.</p>
+performance optimization.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -156,8 +152,6 @@ performance optimisation.</p>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#implementation-notes">Implementation notes</a></li>
-
-      <li><a href="#specification">Specification</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

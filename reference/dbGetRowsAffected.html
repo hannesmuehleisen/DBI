@@ -76,7 +76,7 @@
     </div>
 
     
-    <p>This function returns the number of rows that were added, deleted, or updated
+    <p>This method returns the number of rows that were added, deleted, or updated
 by a data manipulation statement.</p>
     
 
@@ -85,14 +85,14 @@ by a data manipulation statement.</p>
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>res</dt>
-      <dd>An object inheriting from <code><a href='DBIResult-class.html'>DBIResult</a></code>.</dd>
+      <dd>An object inheriting from <a href='DBIResult-class.html'>DBIResult</a>.</dd>
       <dt>...</dt>
       <dd>Other arguments passed on to methods.</dd>
     </dl>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>dbGetRowsAffected()</code> returns a scalar number string (integer or numeric),
+    <p><code>dbGetRowsAffected()</code> returns a scalar number (integer or numeric),
 the number of rows affected by a data manipulation statement
 issued with <code><a href='dbSendStatement.html'>dbSendStatement()</a></code>.
 The value is available directly after the call

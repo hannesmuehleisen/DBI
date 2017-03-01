@@ -86,12 +86,11 @@ R identifiers.</p>
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>conn</dt>
-      <dd>A <code><a href='DBIConnection-class.html'>DBIConnection</a></code> object, as returned by
+      <dd>A <a href='DBIConnection-class.html'>DBIConnection</a> object, as returned by
 <code><a href='dbConnect.html'>dbConnect()</a></code>.</dd>
       <dt>name</dt>
       <dd>A character string specifying the unquoted DBMS table name,
-a list specifying arguments to a call to <code><a href='dbQuoteIdentifier.html'>dbQuoteIdentifier()</a></code>
-(excluding the first <code>conn</code> argument), or the result of such a call</dd>
+or the result of a call to <code><a href='dbQuoteIdentifier.html'>dbQuoteIdentifier()</a></code>.</dd>
       <dt>...</dt>
       <dd>Other parameters passed on to methods.</dd>
     </dl>
@@ -121,7 +120,8 @@ an error is raised if no such column exists.
 </ul></p>
     <p>If the database supports identifiers with special characters,
 the columns in the returned data frame are converted to valid R
-identifiers if the <code>make.names</code> argument is <code>TRUE</code>,
+identifiers
+if the <code>check.names</code> argument is <code>TRUE</code>,
 otherwise non-syntactic column names can be returned unquoted.</p>
     <p>An error is raised
 if <code>name</code> cannot be processed with <code><a href='dbQuoteIdentifier.html'>dbQuoteIdentifier()</a></code>
@@ -131,11 +131,6 @@ Unsupported values for <code>row.names</code> and <code>check.names</code>
 unsupported data types,
 <code>NA</code> for <code>check.names</code>)
 also raise an error.</p>
-    
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>The default DBI implementation converts column names with a call to
-<code>make.names()</code> if <code>check.names</code> is <code>TRUE</code>.</p>
     
     <h2 class="hasAnchor" id="additional-arguments"><a class="anchor" href="#additional-arguments"></a>Additional arguments</h2>
 
@@ -202,8 +197,6 @@ so that all optional arguments are passed along
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#note">Note</a></li>
 
       <li><a href="#additional-arguments">Additional arguments</a></li>
 

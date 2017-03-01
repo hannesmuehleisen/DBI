@@ -76,7 +76,7 @@
     </div>
 
     
-    <p>The function <code>dbSendStatement</code> only submits and synchronously executes the
+    <p>The <code>dbSendStatement()</code> method only submits and synchronously executes the
 SQL data manipulation statement (e.g., <code>UPDATE</code>, <code>DELETE</code>,
 <code>INSERT INTO</code>, <code>DROP TABLE</code>, ...) to the database engine.  To query
 the number of affected rows, call <code><a href='dbGetRowsAffected.html'>dbGetRowsAffected()</a></code> on the
@@ -90,10 +90,10 @@ that. For interactive use, you should almost always prefer
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>conn</dt>
-      <dd>A <code><a href='DBIConnection-class.html'>DBIConnection</a></code> object, as returned by
+      <dd>A <a href='DBIConnection-class.html'>DBIConnection</a> object, as returned by
 <code><a href='dbConnect.html'>dbConnect()</a></code>.</dd>
       <dt>statement</dt>
-      <dd>a character vector of length 1 containing SQL.</dd>
+      <dd>a character string containing SQL.</dd>
       <dt>...</dt>
       <dd>Other parameters passed on to methods.</dd>
     </dl>
@@ -104,7 +104,7 @@ that. For interactive use, you should almost always prefer
 an S4 object that inherits from <a href='DBIResult-class.html'>DBIResult</a>.
 The result set can be used with <code><a href='dbGetRowsAffected.html'>dbGetRowsAffected()</a></code> to
 determine the number of rows affected by the query.
-Once you have finished using a result, make sure to disconnect it
+Once you have finished using a result, make sure to clear it
 with <code><a href='dbClearResult.html'>dbClearResult()</a></code>.
 An error is raised when issuing a statement over a closed
 or invalid connection,
@@ -121,8 +121,6 @@ implement the latter.</p>
 
     <p></p>
     <p>No warnings occur under normal conditions.
-The DBIResult object returned by <code>dbSendStatement()</code> must be valid, i.e.,
-<code><a href='dbIsValid.html'>dbIsValid()</a></code> returns <code>TRUE</code>.
 When done, the DBIResult object must be cleared with a call to
 <code><a href='dbClearResult.html'>dbClearResult()</a></code>.
 Failure to clear the result set leads to a warning

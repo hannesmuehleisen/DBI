@@ -85,7 +85,7 @@ resources (e.g., memory, sockets).</p>
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>conn</dt>
-      <dd>A <code><a href='DBIConnection-class.html'>DBIConnection</a></code> object, as returned by
+      <dd>A <a href='DBIConnection-class.html'>DBIConnection</a> object, as returned by
 <code><a href='dbConnect.html'>dbConnect()</a></code>.</dd>
       <dt>...</dt>
       <dd>Other parameters passed on to methods.</dd>
@@ -98,9 +98,10 @@ resources (e.g., memory, sockets).</p>
     <h2 class="hasAnchor" id="specification"><a class="anchor" href="#specification"></a>Specification</h2>
 
     <p></p>
-    <p>A warning is issued when releasing a connection without calling
-<code>dbDisconnect()</code>,
-or when calling <code>dbDisconnect()</code> on an already disconnected connection.</p>
+    <p>A warning is issued on garbage collection when a connection has been
+released without calling <code>dbDisconnect()</code>.
+A warning is issued immediately when calling <code>dbDisconnect()</code> on an
+already disconnected connection.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

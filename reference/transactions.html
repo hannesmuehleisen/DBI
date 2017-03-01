@@ -93,7 +93,7 @@ This helps ensuring consistency of write operations to multiple tables.</p>
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>conn</dt>
-      <dd>A <code><a href='DBIConnection-class.html'>DBIConnection</a></code> object, as returned by
+      <dd>A <a href='DBIConnection-class.html'>DBIConnection</a> object, as returned by
 <code><a href='dbConnect.html'>dbConnect()</a></code>.</dd>
       <dt>...</dt>
       <dd>Other parameters passed on to methods.</dd>
@@ -103,7 +103,7 @@ This helps ensuring consistency of write operations to multiple tables.</p>
 
     <p><code>dbBegin()</code>, <code>dbCommit()</code> and <code>dbRollback()</code> return <code>TRUE</code>, invisibly.
 The implementations are expected to raise an error in case of failure,
-but this is difficult to test in an automated way.
+but this is not tested.
 In any way, all generics throw an error with a closed connection.
 In addition, a call to <code>dbCommit()</code>
 or <code>dbRollback()</code>
@@ -146,6 +146,7 @@ All data written in such a transaction must be removed after the
 transaction is rolled back.</p>
     <p>The behavior is not specified if other arguments are passed to these
 functions. In particular, <span class="pkg">RSQLite</span> issues named transactions
+with support for nesting
 if the <code>name</code> argument is set.</p>
     <p>The transaction isolation level is not specified by DBI.</p>
     
