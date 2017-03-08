@@ -140,8 +140,7 @@ See the &quot;Specification&quot; and &quot;Value&quot; sections for details on 
 to support databases that allow non-syntactic names for their objects:
 <ul>
 <li> If an unquoted table name as string: <code>dbWriteTable()</code> will do the quoting,
-perhaps by calling <code>dbQuoteIdentifier(conn, x = name, ...)</code>
-so that all optional arguments are passed along
+perhaps by calling <code>dbQuoteIdentifier(conn, x = name)</code>
 </li>
 <li> If the result of a call to <code><a href='dbQuoteIdentifier.html'>dbQuoteIdentifier()</a></code>: no more quoting is done
 </li>
@@ -186,7 +185,7 @@ and native encodings)
 </li>
 <li> date
 (if supported by the database;
-returned as integers with class <code>Date</code>)
+returned as <code>Date</code>)
 </li>
 <li> time
 (if supported by the database;
@@ -194,6 +193,7 @@ returned as objects that inherit from <code>difftime</code>)
 </li>
 <li> timestamp
 (if supported by the database;
+returned as <code>POSIXlt</code>
 with time zone support)
 </li>
 </ul></p>

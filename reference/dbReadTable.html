@@ -155,8 +155,7 @@ to support databases that allow non-syntactic names for their objects:
 <ul>
 <li> If an unquoted table name as string: <code>dbReadTable()</code> will do the
 quoting,
-perhaps by calling <code>dbQuoteIdentifier(conn, x = name, ...)</code>
-so that all optional arguments are passed along
+perhaps by calling <code>dbQuoteIdentifier(conn, x = name)</code>
 </li>
 <li> If the result of a call to <code><a href='dbQuoteIdentifier.html'>dbQuoteIdentifier()</a></code>: no more quoting is done
 </li>
