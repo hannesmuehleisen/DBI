@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -31,6 +31,8 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -84,15 +86,22 @@ generate valid SQL and avoid SQL injection.</p>
     <pre><span class='fu'>dbQuoteIdentifier</span>(<span class='no'>conn</span>, <span class='no'>x</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>conn</dt>
-      <dd>A subclass of <a href='DBIConnection-class.html'>DBIConnection</a>, representing
-an active connection to an DBMS.</dd>
-      <dt>x</dt>
-      <dd>A character vector to quote as identifier.</dd>
-      <dt>...</dt>
-      <dd>Other arguments passed on to methods.</dd>
-    </dl>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>conn</th>
+      <td><p>A subclass of <a href='DBIConnection-class.html'>DBIConnection</a>, representing
+an active connection to an DBMS.</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>A character vector to quote as identifier.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other arguments passed on to methods.</p></td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
@@ -101,7 +110,7 @@ of the same length as the input.
 For an empty character vector this function returns a length-0 object.
 An error is raised if the input contains <code>NA</code>,
 but not for an empty string.</p>
-    <p>When passing the returned object again to <code>dbQuoteIdentifier()</code>
+<p>When passing the returned object again to <code>dbQuoteIdentifier()</code>
 as <code>x</code>
 argument, it is returned unchanged.
 Passing objects of class <a href='SQL.html'>SQL</a> should also return them unchanged.
@@ -110,7 +119,7 @@ to achieve this behavior, but this is not required.)</p>
     
     <h2 class="hasAnchor" id="specification"><a class="anchor" href="#specification"></a>Specification</h2>
 
-    <p></p>
+    
     <p>Calling <code><a href='dbGetQuery.html'>dbGetQuery()</a></code> for a query of the format <code>SELECT 1 AS ...</code>
 returns a data frame with the identifier, unquoted, as column name.
 Quoted identifiers can be used as table and column names in SQL queries,
@@ -142,13 +151,13 @@ and not by <code>dbQuoteIdentifier()</code>.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Quoting ensures that arbitrary input is safe for use in a query</span>
 <span class='no'>name</span> <span class='kw'>&lt;-</span> <span class='st'>"Robert'); DROP TABLE Students;--"</span>
-<span class='fu'>dbQuoteIdentifier</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='no'>name</span>)</div><div class='output co'>#&gt; &lt;SQL&gt; &quot;Robert&#39;); DROP TABLE Students;--&quot;</div><div class='input'>
+<span class='fu'>dbQuoteIdentifier</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='no'>name</span>)</div><div class='output co'>#&gt; &lt;SQL&gt; "Robert'); DROP TABLE Students;--"</div><div class='input'>
 <span class='co'># SQL vectors are always passed through as is</span>
 <span class='no'>var_name</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='SQL.html'>SQL</a></span>(<span class='st'>"select"</span>)
 <span class='no'>var_name</span></div><div class='output co'>#&gt; &lt;SQL&gt; select</div><div class='input'>
 <span class='fu'>dbQuoteIdentifier</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='no'>var_name</span>)</div><div class='output co'>#&gt; &lt;SQL&gt; select</div><div class='input'>
 <span class='co'># This mechanism is used to prevent double escaping</span>
-<span class='fu'>dbQuoteIdentifier</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='fu'>dbQuoteIdentifier</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='no'>name</span>))</div><div class='output co'>#&gt; &lt;SQL&gt; &quot;Robert&#39;); DROP TABLE Students;--&quot;</div></pre>
+<span class='fu'>dbQuoteIdentifier</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='fu'>dbQuoteIdentifier</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='no'>name</span>))</div><div class='output co'>#&gt; &lt;SQL&gt; "Robert'); DROP TABLE Students;--"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -31,6 +31,8 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -84,74 +86,82 @@ This method is mostly useful for backend implementers.</p>
     <pre><span class='fu'>sqlCreateTable</span>(<span class='no'>con</span>, <span class='no'>table</span>, <span class='no'>fields</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>temporary</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>con</dt>
-      <dd>A database connection.</dd>
-      <dt>table</dt>
-      <dd>Name of the table. Escaped with
-<code><a href='dbQuoteIdentifier.html'>dbQuoteIdentifier()</a></code>.</dd>
-      <dt>fields</dt>
-      <dd>Either a character vector or a data frame.
-
-A named character vector: Names are column names, values are types.
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>con</th>
+      <td><p>A database connection.</p></td>
+    </tr>
+    <tr>
+      <th>table</th>
+      <td><p>Name of the table. Escaped with
+<code><a href='dbQuoteIdentifier.html'>dbQuoteIdentifier()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>fields</th>
+      <td><p>Either a character vector or a data frame.</p>
+<p>A named character vector: Names are column names, values are types.
 Names are escaped with <code><a href='dbQuoteIdentifier.html'>dbQuoteIdentifier()</a></code>.
-Field types are unescaped.
-
-A data frame: field types are generated using
-<code><a href='dbDataType.html'>dbDataType()</a></code>.</dd>
-      <dt>row.names</dt>
-      <dd>Either <code>TRUE</code>, <code>FALSE</code>, <code>NA</code> or a string.
-
-If <code>TRUE</code>, always translate row names to a column called &quot;row_names&quot;.
+Field types are unescaped.</p>
+<p>A data frame: field types are generated using
+<code><a href='dbDataType.html'>dbDataType()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>row.names</th>
+      <td><p>Either <code>TRUE</code>, <code>FALSE</code>, <code>NA</code> or a string.</p>
+<p>If <code>TRUE</code>, always translate row names to a column called "row_names".
 If <code>FALSE</code>, never translate row names. If <code>NA</code>, translate
-rownames only if they&#39;re a character vector.
-
-A string is equivalent to <code>TRUE</code>, but allows you to override the
-default name.
-
-For backward compatibility, <code>NULL</code> is equivalent to <code>FALSE</code>.</dd>
-      <dt>temporary</dt>
-      <dd>If <code>TRUE</code>, will generate a temporary table statement.</dd>
-      <dt>...</dt>
-      <dd>Other arguments used by individual methods.</dd>
-    </dl>
+rownames only if they're a character vector.</p>
+<p>A string is equivalent to <code>TRUE</code>, but allows you to override the
+default name.</p>
+<p>For backward compatibility, <code>NULL</code> is equivalent to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>temporary</th>
+      <td><p>If <code>TRUE</code>, will generate a temporary table statement.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other arguments used by individual methods.</p></td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="dbi-backends"><a class="anchor" href="#dbi-backends"></a>DBI-backends</h2>
 
-    <p></p>
+    
     <p>If you implement one method (i.e. for strings or data frames), you need
 to implement both, otherwise the S4 dispatch rules will be ambiguous
 and will generate an error on every call.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>sqlCreateTable</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='st'>"my-table"</span>, <span class='fu'>c</span>(<span class='kw'>a</span> <span class='kw'>=</span> <span class='st'>"integer"</span>, <span class='kw'>b</span> <span class='kw'>=</span> <span class='st'>"text"</span>))</div><div class='output co'>#&gt; &lt;SQL&gt; CREATE TABLE &quot;my-table&quot; (
-#&gt;   &quot;a&quot; integer,
-#&gt;   &quot;b&quot; text
+    <pre class="examples"><div class='input'><span class='fu'>sqlCreateTable</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='st'>"my-table"</span>, <span class='fu'>c</span>(<span class='kw'>a</span> <span class='kw'>=</span> <span class='st'>"integer"</span>, <span class='kw'>b</span> <span class='kw'>=</span> <span class='st'>"text"</span>))</div><div class='output co'>#&gt; &lt;SQL&gt; CREATE TABLE "my-table" (
+#&gt;   "a" integer,
+#&gt;   "b" text
 #&gt; )
-#&gt; </div><div class='input'><span class='fu'>sqlCreateTable</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='st'>"my-table"</span>, <span class='no'>iris</span>)</div><div class='output co'>#&gt; &lt;SQL&gt; CREATE TABLE &quot;my-table&quot; (
-#&gt;   &quot;Sepal.Length&quot; DOUBLE,
-#&gt;   &quot;Sepal.Width&quot; DOUBLE,
-#&gt;   &quot;Petal.Length&quot; DOUBLE,
-#&gt;   &quot;Petal.Width&quot; DOUBLE,
-#&gt;   &quot;Species&quot; TEXT
+#&gt; </div><div class='input'><span class='fu'>sqlCreateTable</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='st'>"my-table"</span>, <span class='no'>iris</span>)</div><div class='output co'>#&gt; &lt;SQL&gt; CREATE TABLE "my-table" (
+#&gt;   "Sepal.Length" DOUBLE,
+#&gt;   "Sepal.Width" DOUBLE,
+#&gt;   "Petal.Length" DOUBLE,
+#&gt;   "Petal.Width" DOUBLE,
+#&gt;   "Species" TEXT
 #&gt; )
 #&gt; </div><div class='input'>
 <span class='co'># By default, character row names are converted to a row_names colum</span>
-<span class='fu'>sqlCreateTable</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='st'>"mtcars"</span>, <span class='no'>mtcars</span>[, <span class='fl'>1</span>:<span class='fl'>5</span>])</div><div class='output co'>#&gt; &lt;SQL&gt; CREATE TABLE &quot;mtcars&quot; (
-#&gt;   &quot;row_names&quot; TEXT,
-#&gt;   &quot;mpg&quot; DOUBLE,
-#&gt;   &quot;cyl&quot; DOUBLE,
-#&gt;   &quot;disp&quot; DOUBLE,
-#&gt;   &quot;hp&quot; DOUBLE,
-#&gt;   &quot;drat&quot; DOUBLE
+<span class='fu'>sqlCreateTable</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='st'>"mtcars"</span>, <span class='no'>mtcars</span>[, <span class='fl'>1</span>:<span class='fl'>5</span>])</div><div class='output co'>#&gt; &lt;SQL&gt; CREATE TABLE "mtcars" (
+#&gt;   "row_names" TEXT,
+#&gt;   "mpg" DOUBLE,
+#&gt;   "cyl" DOUBLE,
+#&gt;   "disp" DOUBLE,
+#&gt;   "hp" DOUBLE,
+#&gt;   "drat" DOUBLE
 #&gt; )
-#&gt; </div><div class='input'><span class='fu'>sqlCreateTable</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='st'>"mtcars"</span>, <span class='no'>mtcars</span>[, <span class='fl'>1</span>:<span class='fl'>5</span>], <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; &lt;SQL&gt; CREATE TABLE &quot;mtcars&quot; (
-#&gt;   &quot;mpg&quot; DOUBLE,
-#&gt;   &quot;cyl&quot; DOUBLE,
-#&gt;   &quot;disp&quot; DOUBLE,
-#&gt;   &quot;hp&quot; DOUBLE,
-#&gt;   &quot;drat&quot; DOUBLE
+#&gt; </div><div class='input'><span class='fu'>sqlCreateTable</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='st'>"mtcars"</span>, <span class='no'>mtcars</span>[, <span class='fl'>1</span>:<span class='fl'>5</span>], <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; &lt;SQL&gt; CREATE TABLE "mtcars" (
+#&gt;   "mpg" DOUBLE,
+#&gt;   "cyl" DOUBLE,
+#&gt;   "disp" DOUBLE,
+#&gt;   "hp" DOUBLE,
+#&gt;   "drat" DOUBLE
 #&gt; )
 #&gt; </div></pre>
   </div>

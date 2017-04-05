@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A Common Database Interface (DBI) • DBI</title>
-<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><!-- mathjax --><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -62,12 +62,12 @@
 <p>This document describes a common interface between the S language (in its R and S-Plus implementations) and database management systems (DBMS). The interface defines a small set of classes and methods similar in spirit to Perl’s DBI, Java’s JDBC, Python’s DB-API, and Microsoft’s ODBC.</p>
 <div id="sec:version" class="section level1">
 <h1 class="hasAnchor">
-<html><body><a href="#sec:version" class="anchor"> </a></body></html>Version</h1>
+<a href="#sec:version" class="anchor"></a>Version</h1>
 <p>This document describes version 0.1-6 of the database interface API (application programming interface).</p>
 </div>
 <div id="sec:intro" class="section level1">
 <h1 class="hasAnchor">
-<html><body><a href="#sec:intro" class="anchor"> </a></body></html>Introduction</h1>
+<a href="#sec:intro" class="anchor"></a>Introduction</h1>
 <p>The database interface (DBI) separates the connectivity to the DBMS into a “front-end” and a “back-end”. Applications use only the exposed “front-end” API. The facilities that communicate with specific DBMS (Oracle, PostgreSQL, etc.) are provided by “device drivers” that get invoked automatically by the S language evaluator. The following example illustrates some of the DBI capabilities:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Choose the proper DBMS driver and connect to the server
 
@@ -131,7 +131,7 @@ while(!<span class="kw"><a href="../reference/dbHasCompleted.html">dbHasComplete
 </div>
 <div id="sec:DBIClasses" class="section level1">
 <h1 class="hasAnchor">
-<html><body><a href="#sec:DBIClasses" class="anchor"> </a></body></html>DBI Classes and Methods</h1>
+<a href="#sec:DBIClasses" class="anchor"></a>DBI Classes and Methods</h1>
 <p>The following are the main DBI classes. They need to be extended by individual database back-ends (Sybase, Oracle, etc.) Individual drivers need to provide methods for the generic functions listed here (those methods that are optional are so indicated).</p>
 <p><em>Note: Although R releases prior to 1.4 do not have a formal concept of classes, we will use the syntax of the S Version 4 classes and methods (available in R releases 1.4 and later as library <code>methods</code>) to convey precisely the DBI class hierarchy, its methods, and intended behavior.</em></p>
 <p>The DBI classes are <code>DBIObject</code>, <code>DBIDriver</code>, <code>DBIConnection</code> and <code>DBIResult</code>. All these are <em>virtual</em> classes. Drivers define new classes that extend these, e.g., <code>PgSQLDriver</code>, <code>PgSQLConnection</code>, and so on.</p>
@@ -188,13 +188,13 @@ while(!<span class="kw"><a href="../reference/dbHasCompleted.html">dbHasComplete
 <p>In the next few sub-sections we describe in detail each of these classes and their methods.</p>
 <div id="class-dbiobject" class="section level2">
 <h2 class="hasAnchor">
-<html><body><a href="#class-dbiobject" class="anchor"> </a></body></html>Class <code id="sec:DBIObject">DBIObject</code>
+<a href="#class-dbiobject" class="anchor"></a>Class <code id="sec:DBIObject">DBIObject</code>
 </h2>
 <p>This class simply groups all DBI classes, and thus all extend it.</p>
 </div>
 <div id="class-dbidriver" class="section level2">
 <h2 class="hasAnchor">
-<html><body><a href="#class-dbidriver" class="anchor"> </a></body></html>Class <code id="sec:DBIDriver">DBIDriver</code>
+<a href="#class-dbidriver" class="anchor"></a>Class <code id="sec:DBIDriver">DBIDriver</code>
 </h2>
 <p>This class identifies the database management system. It needs to be extended by individual back-ends (Oracle, PostgreSQL, etc.)</p>
 <p>The DBI provides the generator <code><a href="../reference/dbDriver.html">dbDriver(driverName)</a></code> which simply invokes the function <code>driverName</code>, which in turn instantiates the corresponding driver object.</p>
@@ -253,7 +253,7 @@ while(!<span class="kw"><a href="../reference/dbHasCompleted.html">dbHasComplete
 </div>
 <div id="class-dbiconnection" class="section level2">
 <h2 class="hasAnchor">
-<html><body><a href="#class-dbiconnection" class="anchor"> </a></body></html>Class <code id="sec:DBIConnection">DBIConnection</code>
+<a href="#class-dbiconnection" class="anchor"></a>Class <code id="sec:DBIConnection">DBIConnection</code>
 </h2>
 <p>This virtual class encapsulates the connection to a DBMS, and it provides access to dynamic queries, result sets, DBMS session management (transactions), etc.</p>
 <p><em>Note:</em> Individual drivers are free to implement single or multiple simultaneous connections.</p>
@@ -382,7 +382,7 @@ while(!<span class="kw"><a href="../reference/dbHasCompleted.html">dbHasComplete
 </div>
 <div id="class-dbiresult" class="section level2">
 <h2 class="hasAnchor">
-<html><body><a href="#class-dbiresult" class="anchor"> </a></body></html>Class <code id="sec:DBIResult">DBIResult</code>
+<a href="#class-dbiresult" class="anchor"></a>Class <code id="sec:DBIResult">DBIResult</code>
 </h2>
 <p>This virtual class describes the result and state of execution of a DBMS statement (any statement, query or non-query). The result set <code>res</code> keeps track of whether the statement produces output for R/S, how many rows were affected by the operation, how many rows have been fetched (if statement is a query), whether there are more rows to fetch, etc.</p>
 <p><em>Note: Individual drivers are free to allow single or multiple active results per connection.</em></p>
@@ -500,14 +500,14 @@ while(!<span class="kw"><a href="../reference/dbHasCompleted.html">dbHasComplete
 </div>
 <div id="sec:data-mappings" class="section level1">
 <h1 class="hasAnchor">
-<html><body><a href="#sec:data-mappings" class="anchor"> </a></body></html>Data Type Mappings</h1>
+<a href="#sec:data-mappings" class="anchor"></a>Data Type Mappings</h1>
 <p>The data types supported by databases are different than the data types in R and S, but the mapping between the “primitive” types is straightforward: Any of the many fixed and varying length character types are mapped to R/S <code>character</code>. Fixed-precision (non-IEEE) numbers are mapped into either doubles (<code>numeric</code>) or long (<code>integer</code>). Notice that many DBMS do not follow the so-called IEEE arithmetic, so there are potential problems with under/overflows and loss of precision, but given the R/S primitive types we cannot do too much but identify these situations and warn the application (how?).</p>
 <p>By default dates and date-time objects are mapped to character using the appropriate <code>TO_CHAR</code> function in the DBMS (which should take care of any locale information). Some RDBMS support the type <code>CURRENCY</code> or <code>MONEY</code> which should be mapped to <code>numeric</code> (again with potential round off errors). Large objects (character, binary, file, etc.) also need to be mapped. User-defined functions may be specified to do the actual conversion (as has been done in other inter-systems packages<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>).</p>
 <p>Specifying user-defined conversion functions still needs to be defined.</p>
 </div>
 <div id="sec:utilities" class="section level1">
 <h1 class="hasAnchor">
-<html><body><a href="#sec:utilities" class="anchor"> </a></body></html>Utilities</h1>
+<a href="#sec:utilities" class="anchor"></a>Utilities</h1>
 <p>The core DBI implementation should make available to all drivers some common basic utilities. For instance:</p>
 <dl>
 <dt>
@@ -539,7 +539,7 @@ while(!<span class="kw"><a href="../reference/dbHasCompleted.html">dbHasComplete
 </div>
 <div id="sec:open-issues" class="section level1">
 <h1 class="hasAnchor">
-<html><body><a href="#sec:open-issues" class="anchor"> </a></body></html>Open Issues and Limitations</h1>
+<a href="#sec:open-issues" class="anchor"></a>Open Issues and Limitations</h1>
 <p>There are a number of issues and limitations that the current DBI conscientiously does not address on the interest of simplicity. We do list here the most important ones.</p>
 <dl>
 <dt>Non-SQL:</dt>
@@ -585,7 +585,7 @@ while(!<span class="kw"><a href="../reference/dbHasCompleted.html">dbHasComplete
 </div>
 <div id="sec:resources" class="section level1">
 <h1 class="hasAnchor">
-<html><body><a href="#sec:resources" class="anchor"> </a></body></html>Resources</h1>
+<a href="#sec:resources" class="anchor"></a>Resources</h1>
 <p>The idea of a common interface to databases has been successfully implemented in various environments, for instance:</p>
 <p>Java’s Database Connectivity (JDBC) (<a href="http://www.javasoft.com/products/jdbc/index.html">www.javasoft.com</a>).</p>
 <p>In C through the Open Database Connectivity (ODBC) (<a href="http://www.unixodbc.org/">www.unixodbc.org</a>).</p>

@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -31,6 +31,8 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -85,7 +87,7 @@ the various R/DBMS implementations (so-called <em>DBI backends</em>).</p>
         
     <h2 class="hasAnchor" id="definition"><a class="anchor" href="#definition"></a>Definition</h2>
 
-    <p></p>
+    
     <p>A DBI backend is an R package,
 which should import the <span class="pkg">DBI</span>
 and <span class="pkg">methods</span>
@@ -96,7 +98,7 @@ to the backend author to adopt this convention or not.</p>
     
     <h2 class="hasAnchor" id="dbi-classes-and-methods"><a class="anchor" href="#dbi-classes-and-methods"></a>DBI classes and methods</h2>
 
-    <p></p>
+    
     <p>A backend defines three classes,
 which are subclasses of
 <a href='DBIDriver-class.html'>DBIDriver</a>,
@@ -109,7 +111,7 @@ All methods have an ellipsis <code>...</code> in their formals.</p>
     
     <h2 class="hasAnchor" id="construction-of-the-dbidriver-object"><a class="anchor" href="#construction-of-the-dbidriver-object"></a>Construction of the DBIDriver object</h2>
 
-    <p></p>
+    
     <p>The backend must support creation of an instance of its <a href='DBIDriver-class.html'>DBIDriver</a>
 subclass
 with a <dfn>constructor function</dfn>.
@@ -125,8 +127,8 @@ DBI recommends to define a constructor with an empty argument list.</p>
 
     <p>Important generics: <code><a href='dbConnect.html'>dbConnect()</a></code>, <code><a href='dbGetQuery.html'>dbGetQuery()</a></code>,
 <code><a href='dbReadTable.html'>dbReadTable()</a></code>, <code><a href='dbWriteTable.html'>dbWriteTable()</a></code>, <code><a href='dbDisconnect.html'>dbDisconnect()</a></code></p>
-    <p>Formal specification (currently work in progress and incomplete):
-<code>vignette(&quot;spec&quot;, package = &quot;DBI&quot;)</code></p>
+<p>Formal specification (currently work in progress and incomplete):
+<code><a href='../articles/spec.html'>vignette("spec", package = "DBI")</a></code></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -153,12 +155,9 @@ DBI recommends to define a constructor with an empty argument list.</p>
 
 Authors:
 <ul>
-<li> R Special Interest Group on Databases (R-SIG-DB)
-  </li>
-<li> Hadley Wickham
-</li>
+<li><p>R Special Interest Group on Databases (R-SIG-DB)</p></li>
+<li><p>Hadley Wickham</p></li>
 </ul>
-
 
 
   </div>
