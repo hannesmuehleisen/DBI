@@ -25,7 +25,7 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -91,7 +91,7 @@ The special function <code>dbBreak()</code> allows an early exit with rollback,
 it can be called only inside <code>dbWithTransaction()</code>.</p>
     
 
-    <pre><span class='fu'>dbWithTransaction</span>(<span class='no'>conn</span>, <span class='no'>code</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>dbWithTransaction</span>(<span class='no'>conn</span>, <span class='no'>code</span>, <span class='no'>...</span>)
 
 <span class='fu'>dbBreak</span>()</pre>
     
@@ -118,6 +118,7 @@ it can be called only inside <code>dbWithTransaction()</code>.</p>
     <p><code>dbWithTransaction()</code> returns the value of the executed code.
 Failure to initiate the transaction
 (e.g., if the connection is closed
+or invalid
 of if <code><a href='transactions.html'>dbBegin()</a></code> has been called already)
 gives an error.</p>
     

@@ -25,7 +25,7 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -83,7 +83,7 @@ use in a query as a column name, to make sure that you
 generate valid SQL and avoid SQL injection.</p>
     
 
-    <pre><span class='fu'>dbQuoteIdentifier</span>(<span class='no'>conn</span>, <span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>dbQuoteIdentifier</span>(<span class='no'>conn</span>, <span class='no'>x</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -125,8 +125,12 @@ returns a data frame with the identifier, unquoted, as column name.
 Quoted identifiers can be used as table and column names in SQL queries,
 in particular in queries like <code>SELECT 1 AS ...</code>
 and <code>SELECT * FROM (SELECT 1) ...</code>.
-This is also true for column names that are empty strings
-or contain special characters such as a space,
+The method must use a quoting mechanism that is unambiguously different
+from the quoting mechanism used for strings, so that a query like
+<code>SELECT ... FROM (SELECT 1 AS ...)</code>
+throws an error if the column names do not match.</p>
+<p>The method can quote column names that
+contain special characters such as a space,
 a dot,
 a comma,
 or quotes used to mark strings

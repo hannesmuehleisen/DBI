@@ -25,7 +25,7 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -81,7 +81,7 @@
     <p>For S4 methods that require a documentation entry but only clutter the index.</p>
     
 
-    <pre><span class='co'># S4 method for character</span>
+    <pre class="usage"><span class='co'># S4 method for character</span>
 <span class='fu'><a href='dbDriver.html'>dbDriver</a></span>(<span class='no'>drvName</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for DBIDriver</span>
@@ -97,7 +97,7 @@
 <span class='fu'><a href='dbSendStatement.html'>dbSendStatement</a></span>(<span class='no'>conn</span>, <span class='no'>statement</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for DBIConnection,character</span>
-<span class='fu'><a href='dbGetQuery.html'>dbGetQuery</a></span>(<span class='no'>conn</span>, <span class='no'>statement</span>, <span class='no'>...</span>)
+<span class='fu'><a href='dbGetQuery.html'>dbGetQuery</a></span>(<span class='no'>conn</span>, <span class='no'>statement</span>, <span class='no'>...</span>, <span class='kw'>n</span> <span class='kw'>=</span> -<span class='fl'>1L</span>)
 
 <span class='co'># S4 method for DBIConnection,character</span>
 <span class='fu'><a href='dbExecute.html'>dbExecute</a></span>(<span class='no'>conn</span>, <span class='no'>statement</span>, <span class='no'>...</span>)
@@ -183,6 +183,10 @@
     <tr>
       <th>conn, x</th>
       <td><p>Connection and Table used when escaping.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>Number of rows to fetch, default -1</p></td>
     </tr>
     <tr>
       <th>object</th>

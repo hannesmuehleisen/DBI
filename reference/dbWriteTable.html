@@ -25,7 +25,7 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -82,7 +82,7 @@
 converting row names to a column and specifying SQL data types for fields.</p>
     
 
-    <pre><span class='fu'>dbWriteTable</span>(<span class='no'>conn</span>, <span class='no'>name</span>, <span class='no'>value</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>dbWriteTable</span>(<span class='no'>conn</span>, <span class='no'>name</span>, <span class='no'>value</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -110,9 +110,13 @@ or the result of a call to <code><a href='dbQuoteIdentifier.html'>dbQuoteIdentif
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>dbWriteTable()</code> returns <code>TRUE</code>, invisibly.
-If the table exists (and both <code>append</code> and <code>overwrite</code> arguments are unset),
+If the table exists, and both <code>append</code> and <code>overwrite</code> arguments are unset,
+or <code>append = TRUE</code> and the data frame with the new data has different
+column names,
 an error is raised; the remote table remains unchanged.</p>
-<p>An error is also raised
+<p>An error is raised when calling this method for a closed
+or invalid connection.
+An error is also raised
 if <code>name</code> cannot be processed with <code><a href='dbQuoteIdentifier.html'>dbQuoteIdentifier()</a></code>
 or if this results in a non-scalar.
 Invalid values for the additional arguments <code>row.names</code>,
@@ -120,7 +124,10 @@ Invalid values for the additional arguments <code>row.names</code>,
 (non-scalars,
 unsupported data types,
 <code>NA</code>,
-incompatible values)
+incompatible values,
+duplicate
+or missing names,
+incompatible columns)
 also raise an error.</p>
     
     <h2 class="hasAnchor" id="additional-arguments"><a class="anchor" href="#additional-arguments"></a>Additional arguments</h2>
@@ -170,11 +177,15 @@ and be read identically with <code><a href='dbReadTable.html'>dbReadTable()</a><
 the latter are translated to <code>NA</code>)</p></li>
 <li><p>logical</p></li>
 <li><p><code>NA</code> as NULL</p></li>
-<li><p>64-bit values (using <code>"bigint"</code> as field type)</p></li>
+<li><p>64-bit values (using <code>"bigint"</code> as field type);
+the result can be converted to a numeric, which may lose precision,</p></li>
 <li><p>character (in both UTF-8
-and native encodings)</p></li>
+and native encodings),
+supporting empty strings</p></li>
 <li><p>factor (returned as character)</p></li>
 <li><p>list of raw
+(if supported by the database)</p></li>
+<li><p>objects of type <a href='http://www.rdocumentation.org/packages/blob/topics/blob'>blob::blob</a>
 (if supported by the database)</p></li>
 <li><p>date
 (if supported by the database;
@@ -184,10 +195,14 @@ returned as <code>Date</code>)</p></li>
 returned as objects that inherit from <code>difftime</code>)</p></li>
 <li><p>timestamp
 (if supported by the database;
-returned as <code>POSIXlt</code>
+returned as <code>POSIXct</code>
 with time zone support)</p></li>
 </ul>
-    <p>The interpretation of <a href='rownames.html'>rownames</a> depends on the <code>row.names</code> argument,
+    <p>Mixing column types in the same table is supported.</p>
+<p>The <code>field.types</code> argument must be a named character vector with at most
+one entry for each column.
+It indicates the SQL data type to be used for a new column.</p>
+<p>The interpretation of <a href='rownames.html'>rownames</a> depends on the <code>row.names</code> argument,
 see <code><a href='rownames.html'>sqlRownamesToColumn()</a></code> for details:</p><ul>
 <li><p>If <code>FALSE</code>, row names are ignored.</p></li>
 <li><p>If <code>TRUE</code>, row names are converted to a column named "row_names",

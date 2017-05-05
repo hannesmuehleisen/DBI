@@ -25,7 +25,7 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -86,7 +86,7 @@ have a permanent effect.
 This helps ensuring consistency of write operations to multiple tables.</p>
     
 
-    <pre><span class='fu'>dbBegin</span>(<span class='no'>conn</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>dbBegin</span>(<span class='no'>conn</span>, <span class='no'>...</span>)
 
 <span class='fu'>dbCommit</span>(<span class='no'>conn</span>, <span class='no'>...</span>)
 
@@ -111,7 +111,8 @@ This helps ensuring consistency of write operations to multiple tables.</p>
     <p><code>dbBegin()</code>, <code>dbCommit()</code> and <code>dbRollback()</code> return <code>TRUE</code>, invisibly.
 The implementations are expected to raise an error in case of failure,
 but this is not tested.
-In any way, all generics throw an error with a closed connection.
+In any way, all generics throw an error with a closed
+or invalid connection.
 In addition, a call to <code>dbCommit()</code>
 or <code>dbRollback()</code>
 without a prior call to <code>dbBegin()</code> raises an error.
@@ -147,8 +148,7 @@ For example, a table that is missing when the transaction is started
 but is created during the transaction
 must not exist anymore after the rollback.</p>
 <p>Disconnection from a connection with an open transaction
-gives a warning
-and effectively rolls back the transaction.
+effectively rolls back the transaction.
 All data written in such a transaction must be removed after the
 transaction is rolled back.</p>
 <p>The behavior is not specified if other arguments are passed to these

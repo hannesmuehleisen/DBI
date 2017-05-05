@@ -25,7 +25,7 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -83,7 +83,7 @@ connection.
 This should, where possible, include temporary tables, and views.</p>
     
 
-    <pre><span class='fu'>dbListTables</span>(<span class='no'>conn</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>dbListTables</span>(<span class='no'>conn</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -111,7 +111,9 @@ are part of the list,
 including temporary tables if supported by the database.
 As soon a table is removed from the database,
 it is also removed from the list of database tables.</p>
-<p>The returned names are suitable for quoting with <code>dbQuoteIdentifier()</code>.</p>
+<p>The returned names are suitable for quoting with <code>dbQuoteIdentifier()</code>.
+An error is raised when calling this method for a closed
+or invalid connection.</p>
     
     <h2 class="hasAnchor" id="additional-arguments"><a class="anchor" href="#additional-arguments"></a>Additional arguments</h2>
 

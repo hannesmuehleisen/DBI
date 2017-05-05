@@ -25,7 +25,7 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -83,7 +83,7 @@ a column to row names and converting the column names to valid
 R identifiers.</p>
     
 
-    <pre><span class='fu'>dbReadTable</span>(<span class='no'>conn</span>, <span class='no'>name</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>dbReadTable</span>(<span class='no'>conn</span>, <span class='no'>name</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -109,7 +109,7 @@ or the result of a call to <code><a href='dbQuoteIdentifier.html'>dbQuoteIdentif
     <p><code>dbReadTable()</code> returns a data frame that contains the complete data
 from the remote table, effectively the result of calling <code><a href='dbGetQuery.html'>dbGetQuery()</a></code>
 with <code>SELECT * FROM &lt;name&gt;</code>.
-An error is returned if the table does not exist.
+An error is raised if the table does not exist.
 An empty table is returned as a data frame with zero rows.</p>
 <p>The presence of <a href='rownames.html'>rownames</a> depends on the <code>row.names</code> argument,
 see <code><a href='rownames.html'>sqlColumnToRownames()</a></code> for details:</p><ul>
@@ -123,12 +123,15 @@ that contains the row names,
 an error is raised if no such column exists.</p></li>
 </ul>
 
+<p>The default is <code>row.names = FALSE</code>.</p>
 <p>If the database supports identifiers with special characters,
 the columns in the returned data frame are converted to valid R
 identifiers
 if the <code>check.names</code> argument is <code>TRUE</code>,
 otherwise non-syntactic column names can be returned unquoted.</p>
-<p>An error is raised
+<p>An error is raised when calling this method for a closed
+or invalid connection.
+An error is raised
 if <code>name</code> cannot be processed with <code><a href='dbQuoteIdentifier.html'>dbQuoteIdentifier()</a></code>
 or if this results in a non-scalar.
 Unsupported values for <code>row.names</code> and <code>check.names</code>

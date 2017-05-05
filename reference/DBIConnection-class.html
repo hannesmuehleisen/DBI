@@ -25,7 +25,7 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -112,11 +112,11 @@ connections.</p>
 #&gt;   Path: :memory:
 #&gt;   Extensions: TRUE</div><div class='input'><span class='fu'><a href='dbDisconnect.html'>dbDisconnect</a></span>(<span class='no'>con</span>)
 
-<span class='co'>## Not run: ------------------------------------</span>
-<span class='co'># con &lt;- dbConnect(RPostgreSQL::PostgreSQL(), "username", "passsword")</span>
-<span class='co'># con</span>
-<span class='co'># dbDisconnect(con)</span>
-<span class='co'>## ---------------------------------------------</span></div></pre>
+<span class='fu'>not_run</span>({
+  <span class='no'>con</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dbConnect.html'>dbConnect</a></span>(<span class='kw'>RPostgreSQL</span><span class='kw'>::</span><span class='fu'>PostgreSQL</span>(), <span class='st'>"username"</span>, <span class='st'>"passsword"</span>)
+  <span class='no'>con</span>
+  <span class='fu'><a href='dbDisconnect.html'>dbDisconnect</a></span>(<span class='no'>con</span>)
+})</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
