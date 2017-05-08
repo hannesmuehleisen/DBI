@@ -149,6 +149,7 @@ If zero rows are fetched, the columns of the data frame are still fully
 typed.
 Fetching fewer rows than available is permitted,
 no warning is issued when clearing the result set.</p>
+<p>A column named <code>row_names</code> is treated like any other column.</p>
     <p>The column types of the returned data frame depend on the data returned:</p><ul>
 <li><p>integer for integer values between -2^31 and 2^31 - 1</p></li>
 <li><p>numeric for numbers with a fractional component</p></li>
