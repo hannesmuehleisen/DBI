@@ -204,7 +204,7 @@ one entry for each column.
 It indicates the SQL data type to be used for a new column.</p>
 <p>The interpretation of <a href='rownames.html'>rownames</a> depends on the <code>row.names</code> argument,
 see <code><a href='rownames.html'>sqlRownamesToColumn()</a></code> for details:</p><ul>
-<li><p>If <code>FALSE</code>, row names are ignored.</p></li>
+<li><p>If <code>FALSE</code> or <code>NULL</code>, row names are ignored.</p></li>
 <li><p>If <code>TRUE</code>, row names are converted to a column named "row_names",
 even if the input data frame only has natural row names from 1 to <code>nrow(...)</code>.</p></li>
 <li><p>If <code>NA</code>, a column named "row_names" is created if the data has custom row names,

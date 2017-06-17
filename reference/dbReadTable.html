@@ -113,7 +113,7 @@ An error is raised if the table does not exist.
 An empty table is returned as a data frame with zero rows.</p>
 <p>The presence of <a href='rownames.html'>rownames</a> depends on the <code>row.names</code> argument,
 see <code><a href='rownames.html'>sqlColumnToRownames()</a></code> for details:</p><ul>
-<li><p>If <code>FALSE</code>, the returned data frame doesn't have row names.</p></li>
+<li><p>If <code>FALSE</code> or <code>NULL</code>, the returned data frame doesn't have row names.</p></li>
 <li><p>If <code>TRUE</code>, a column named "row_names" is converted to row names,
 an error is raised if no such column exists.</p></li>
 <li><p>If <code>NA</code>, a column named "row_names" is converted to row names if it exists,
