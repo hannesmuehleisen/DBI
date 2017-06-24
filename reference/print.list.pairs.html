@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -51,10 +52,34 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/backend.html">Implementing a new backend</a>
+    </li>
+    <li>
+      <a href="../articles/DBI-1.html">A Common Database Interface (DBI)</a>
+    </li>
+    <li>
+      <a href="../articles/DBI-proposal.html">A Common Interface to Relational Databases from R and S -- A Proposal</a>
+    </li>
+    <li>
+      <a href="../articles/spec.html">DBI specification</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -79,7 +104,7 @@
 
     
     <p>DEPRECATED, do not use. Use <code><a href='http://www.rdocumentation.org/packages/base/topics/summary'>base::summary()</a></code> to print output of
-<code><a href='dbGetInfo.html'>dbGetInfo()</a></code>.</p>
+<code>dbGetInfo()</code>.</p>
     
 
     <pre class="usage"><span class='co'># S3 method for list.pairs</span>

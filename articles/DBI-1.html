@@ -29,10 +29,34 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/backend.html">Implementing a new backend</a>
+    </li>
+    <li>
+      <a href="../articles/DBI-1.html">A Common Database Interface (DBI)</a>
+    </li>
+    <li>
+      <a href="../articles/DBI-proposal.html">A Common Interface to Relational Databases from R and S -- A Proposal</a>
+    </li>
+    <li>
+      <a href="../articles/spec.html">DBI specification</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -176,13 +200,13 @@ while(!<span class="kw"><a href="../reference/dbHasCompleted.html">dbHasComplete
 <dt>
 <code>summary(object, ...)</code>:</dt>
 <dd>
-<p>produces a concise description of the object. The default method for <code>DBIObject</code> simply invokes <code><a href="../reference/dbGetInfo.html">dbGetInfo(dbObj)</a></code> and prints the name-value pairs one per line. Individual implementations may tailor this appropriately.</p>
+<p>produces a concise description of the object. The default method for <code>DBIObject</code> simply invokes <code>dbGetInfo(dbObj)</code> and prints the name-value pairs one per line. Individual implementations may tailor this appropriately.</p>
 </dd>
 <dt>
-<code><a href="../reference/dbGetInfo.html">dbGetInfo(dbObj, ...)</a></code>:</dt>
+<code>dbGetInfo(dbObj, ...)</code>:</dt>
 <dd>
 <p>extracts information (meta-data) relevant for the <code>DBIObject</code> <code>dbObj</code>. It may return a list of key/value pairs, individual meta-data if supplied in the call, or <code>NULL</code> if the requested meta-data is not available.</p>
-<p><em>Hint:</em> Driver implementations may choose to allow an argument <code>what</code> to specify individual meta-data, e.g., <code><a href="../reference/dbGetInfo.html">dbGetInfo(drv, what = max.connections)</a></code>.</p>
+<p><em>Hint:</em> Driver implementations may choose to allow an argument <code>what</code> to specify individual meta-data, e.g., <code>dbGetInfo(drv, what = max.connections)</code>.</p>
 </dd>
 </dl>
 <p>In the next few sub-sections we describe in detail each of these classes and their methods.</p>
@@ -211,7 +235,7 @@ while(!<span class="kw"><a href="../reference/dbHasCompleted.html">dbHasComplete
 <p>list of current connections being handled by the <code>drv</code> driver. May be <code>NULL</code> if there are no open connections. Drivers that do not support multiple connections may return the one open connection.</p>
 </dd>
 <dt>
-<code><a href="../reference/dbGetInfo.html">dbGetInfo(dbObj, ...)</a></code>:</dt>
+<code>dbGetInfo(dbObj, ...)</code>:</dt>
 <dd>
 <p>returns a list of name-value pairs of information about the driver.</p>
 <p><em>Hint:</em> Useful entries could include</p>
@@ -286,7 +310,7 @@ while(!<span class="kw"><a href="../reference/dbHasCompleted.html">dbHasComplete
 <p><em>Hint:</em> The ANSI SQL-92 defines both a status code and an status message that could be return as members of the list.</p>
 </dd>
 <dt>
-<code><a href="../reference/dbGetInfo.html">dbGetInfo(dbObj, ...)</a></code>:</dt>
+<code>dbGetInfo(dbObj, ...)</code>:</dt>
 <dd>
 <p>returns a list of name-value pairs describing the state of the connection; it may return one or more meta-data, the actual driver method allows to specify individual pieces of meta-data (e.g., maximum number of open results/cursors).</p>
 <p><em>Hint:</em> Useful entries could include</p>
@@ -400,7 +424,7 @@ while(!<span class="kw"><a href="../reference/dbHasCompleted.html">dbHasComplete
 <p>flushes any pending data and frees all resources (local and remote) used by the object <code>res</code> on both sides of the connection. Returns a logical indicating success or not.</p>
 </dd>
 <dt>
-<code><a href="../reference/dbGetInfo.html">dbGetInfo(dbObj, ...)</a></code>:</dt>
+<code>dbGetInfo(dbObj, ...)</code>:</dt>
 <dd>
 <p>returns a name-value list with the state of the result set.</p>
 <p><em>Hint:</em> Useful entries could include</p>
@@ -531,7 +555,7 @@ while(!<span class="kw"><a href="../reference/dbHasCompleted.html">dbHasComplete
 <p>returns a character vector of SQL keywords (reserved words). The default method returns the list of <code>.SQL92Keywords</code>, but drivers should update this vector with the DBMS-specific additional reserved words.</p>
 </dd>
 <dt>
-<code><a href="../reference/make.db.names.html">isSQLKeyword(dbObj, name, ...)</a></code>:</dt>
+<code>isSQLKeyword(dbObj, name, ...)</code>:</dt>
 <dd>
 <p>for each element in the character vector <code>name</code> determine whether or not it is an SQL keyword, as reported by the generic function <code>SQLKeywords</code>. Returns a logical vector parallel to the input object <code>name</code>.</p>
 </dd>
@@ -612,7 +636,8 @@ while(!<span class="kw"><a href="../reference/dbHasCompleted.html">dbHasComplete
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
         <div id="tocnav">
-      <h2>Contents</h2>
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#sec:version">Version</a></li>
       <li><a href="#sec:intro">Introduction</a></li>

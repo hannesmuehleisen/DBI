@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -51,10 +52,34 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/backend.html">Implementing a new backend</a>
+    </li>
+    <li>
+      <a href="../articles/DBI-1.html">A Common Database Interface (DBI)</a>
+    </li>
+    <li>
+      <a href="../articles/DBI-proposal.html">A Common Interface to Relational Databases from R and S -- A Proposal</a>
+    </li>
+    <li>
+      <a href="../articles/spec.html">DBI specification</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -132,11 +157,11 @@ connecting to the database engine itself needs to be done through calls to
 
     <p>Other DBIDriver generics: <code><a href='DBIDriver-class.html'>DBIDriver-class</a></code>,
   <code><a href='dbConnect.html'>dbConnect</a></code>, <code><a href='dbDataType.html'>dbDataType</a></code>,
-  <code><a href='dbGetInfo.html'>dbGetInfo</a></code>, <code><a href='dbIsValid.html'>dbIsValid</a></code>,
+  <code>dbGetInfo</code>, <code><a href='dbIsValid.html'>dbIsValid</a></code>,
   <code><a href='dbListConnections.html'>dbListConnections</a></code></p>
 <p>Other DBIDriver generics: <code><a href='DBIDriver-class.html'>DBIDriver-class</a></code>,
   <code><a href='dbConnect.html'>dbConnect</a></code>, <code><a href='dbDataType.html'>dbDataType</a></code>,
-  <code><a href='dbGetInfo.html'>dbGetInfo</a></code>, <code><a href='dbIsValid.html'>dbIsValid</a></code>,
+  <code>dbGetInfo</code>, <code><a href='dbIsValid.html'>dbIsValid</a></code>,
   <code><a href='dbListConnections.html'>dbListConnections</a></code></p>
     
 
@@ -145,7 +170,7 @@ connecting to the database engine itself needs to be done through calls to
 <span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'>dbDriver</span>(<span class='st'>"SQLite"</span>)
 <span class='no'>d</span></div><div class='output co'>#&gt; &lt;SQLiteDriver&gt;</div><div class='input'>
 <span class='co'># But better, access the object directly</span>
-<span class='kw'>RSQLite</span><span class='kw'>::</span><span class='fu'>SQLite</span>()</div><div class='output co'>#&gt; &lt;SQLiteDriver&gt;</div></pre>
+<span class='kw pkg'>RSQLite</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/RSQLite/topics/SQLite'>SQLite</a></span>()</div><div class='output co'>#&gt; &lt;SQLiteDriver&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

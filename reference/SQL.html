@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -51,10 +52,34 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/backend.html">Implementing a new backend</a>
+    </li>
+    <li>
+      <a href="../articles/DBI-1.html">A Common Database Interface (DBI)</a>
+    </li>
+    <li>
+      <a href="../articles/DBI-proposal.html">A Common Interface to Relational Databases from R and S -- A Proposal</a>
+    </li>
+    <li>
+      <a href="../articles/spec.html">DBI specification</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -115,8 +140,8 @@ The <code>SQL</code> class has associated the <code>SQL()</code> constructor fun
 uses a different convention, you will need to provide your own methods.
 Note that because of the way that S4 dispatch finds methods and because
 SQL inherits from character, if you implement (e.g.) a method for
-<code>dbQuoteString(MyConnection, character)</code>, you will also need to
-implement <code>dbQuoteString(MyConnection, SQL)</code> - this should simply
+<code><a href='dbQuoteString.html'>dbQuoteString(MyConnection, character)</a></code>, you will also need to
+implement <code><a href='dbQuoteString.html'>dbQuoteString(MyConnection, SQL)</a></code> - this should simply
 return <code>x</code> unchanged.</p>
     
 
