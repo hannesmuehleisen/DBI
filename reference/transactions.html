@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -158,10 +158,9 @@ these methods should not be implemented for the specific
 A transaction is initiated by a call to <code>dbBegin()</code>
 and committed by a call to <code>dbCommit()</code>.
 Data written in a transaction must persist after the transaction is committed.
-For example, a table that is missing when the transaction is started
-but is created
-and populated during the transaction
-must exist and contain the data added there
+For example, a record that is missing when the transaction is started
+but is created during the transaction
+must exist
 both during
 and after the transaction,
 and also in a new connection.</p>
@@ -169,7 +168,7 @@ and also in a new connection.</p>
 can also be aborted with <code>dbRollback()</code>.
 All data written in such a transaction must be removed after the
 transaction is rolled back.
-For example, a table that is missing when the transaction is started
+For example, a record that is missing when the transaction is started
 but is created during the transaction
 must not exist anymore after the rollback.</p>
 <p>Disconnection from a connection with an open transaction
