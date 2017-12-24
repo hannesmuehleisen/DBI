@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DBI specification • DBI</title>
-<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -77,7 +77,7 @@
       <h1>DBI specification</h1>
                         <h4 class="author">Kirill Müller</h4>
             
-            <h4 class="date">2017-12-23</h4>
+            <h4 class="date">2017-12-24</h4>
           </div>
 
     
@@ -391,7 +391,7 @@ Value
 Specification
 </h3>
 <p>
-A warning is issued on garbage collection when a connection has been released without calling <code><a href="../reference/dbDisconnect.html">dbDisconnect()</a></code>. A warning is issued immediately when calling <code><a href="../reference/dbDisconnect.html">dbDisconnect()</a></code> on an already disconnected or invalid connection.
+A warning is issued on garbage collection when a connection has been released without calling <code><a href="../reference/dbDisconnect.html">dbDisconnect()</a></code>, but this cannot be tested automatically. A warning is issued immediately when calling <code><a href="../reference/dbDisconnect.html">dbDisconnect()</a></code> on an already disconnected or invalid connection.
 </p>
 <h3>
 Examples
@@ -559,7 +559,7 @@ Value
 Specification
 </h3>
 <p>
-Fetching multi-row queries with one or more columns be default returns the entire result. Multi-row queries can also be fetched progressively by passing a whole number (integer or numeric) as the <code>n</code> argument. A value of Inf for the <code>n</code> argument is supported and also returns the full result. If more rows than available are fetched, the result is returned in full without warning. If fewer rows than requested are returned, further fetches will return a data frame with zero rows. If zero rows are fetched, the columns of the data frame are still fully typed. Fetching fewer rows than available is permitted, no warning is issued when clearing the result set.
+Fetching multi-row queries with one or more columns by default returns the entire result. Multi-row queries can also be fetched progressively by passing a whole number (integer or numeric) as the <code>n</code> argument. A value of Inf for the <code>n</code> argument is supported and also returns the full result. If more rows than available are fetched, the result is returned in full without warning. If fewer rows than requested are returned, further fetches will return a data frame with zero rows. If zero rows are fetched, the columns of the data frame are still fully typed. Fetching fewer rows than available is permitted, no warning is issued when clearing the result set.
 </p>
 <p>
 A column named <code>row_names</code> is treated like any other column.
@@ -570,47 +570,42 @@ The column types of the returned data frame depend on the data returned:
 <ul>
 <li>
 <p>
-integer for integer values between -2^31 and 2^31 - 1
+integer (or coercible to an integer) for integer values between -2^31 and 2^31 - 1, with NA for SQL <code>NULL</code> values
 </p>
 </li>
 <li>
 <p>
-numeric for numbers with a fractional component
+numeric for numbers with a fractional component, with NA for SQL <code>NULL</code> values
 </p>
 </li>
 <li>
 <p>
-logical for Boolean values (some backends may return an integer)
+logical for Boolean values (some backends may return an integer); with NA for SQL <code>NULL</code> values
 </p>
 </li>
 <li>
 <p>
-character for text
+character for text, with NA for SQL <code>NULL</code> values
 </p>
 </li>
 <li>
 <p>
-lists of raw for blobs (with <code>NULL</code> entries for SQL NULL values)
+lists of raw for blobs with NULL entries for SQL NULL values
 </p>
 </li>
 <li>
 <p>
-coercible using <code>as.Date()</code> for dates (also applies to the return value of the SQL function <code>current_date</code>)
+coercible using <code>as.Date()</code> for dates, with NA for SQL <code>NULL</code> values (also applies to the return value of the SQL function <code>current_date</code>)
 </p>
 </li>
 <li>
 <p>
-coercible using <code><a href="http://www.rdocumentation.org/packages/hms/topics/hms">hms::as.hms()</a></code> for times (also applies to the return value of the SQL function <code>current_time</code>)
+coercible using <code><a href="http://www.rdocumentation.org/packages/hms/topics/hms">hms::as.hms()</a></code> for times, with NA for SQL <code>NULL</code> values (also applies to the return value of the SQL function <code>current_time</code>)
 </p>
 </li>
 <li>
 <p>
-coercible using <code>as.POSIXct()</code> for timestamps (also applies to the return value of the SQL function <code>current_timestamp</code>)
-</p>
-</li>
-<li>
-<p>
-NA for SQL <code>NULL</code> values
+coercible using <code>as.POSIXct()</code> for timestamps, with NA for SQL <code>NULL</code> values (also applies to the return value of the SQL function <code>current_timestamp</code>)
 </p>
 </li>
 </ul>
@@ -918,7 +913,7 @@ Close the result set via <code><a href="../reference/dbClearResult.html">dbClear
 The elements of the <code>params</code> argument do not need to be scalars, vectors of arbitrary length (including length 0) are supported. For queries, calling <code><a href="../reference/dbFetch.html">dbFetch()</a></code> binding such parameters returns concatenated results, equivalent to binding and fetching for each set of values and connecting via <code>rbind()</code>. For data manipulation statements, <code><a href="../reference/dbGetRowsAffected.html">dbGetRowsAffected()</a></code> returns the total number of rows affected if binding non-scalar parameters. <code><a href="../reference/dbBind.html">dbBind()</a></code> also accepts repeated calls on the same result set for both queries and data manipulation statements, even if no results are fetched between calls to <code><a href="../reference/dbBind.html">dbBind()</a></code>.
 </p>
 <p>
-At least the following data types are accepted:
+At least the following data types are accepted on input (including NA):
 </p>
 <ul>
 <li>
@@ -933,12 +928,7 @@ numeric
 </li>
 <li>
 <p>
-logical for Boolean values (some backends may return an integer)
-</p>
-</li>
-<li>
-<p>
-NA
+logical for Boolean values
 </p>
 </li>
 <li>
@@ -1764,7 +1754,7 @@ time (if supported by the database; returned as objects that inherit from <code>
 </li>
 <li>
 <p>
-timestamp (if supported by the database; returned as <code>POSIXct</code> with time zone support)
+timestamp (if supported by the database; returned as <code>POSIXct</code> respecting the time zone but not necessarily preserving the input time zone)
 </p>
 </li>
 </ul>
@@ -2489,10 +2479,10 @@ Value
 Specification
 </h3>
 <p>
-Actual support for transactions may vary between backends. A transaction is initiated by a call to <code><a href="../reference/transactions.html">dbBegin()</a></code> and committed by a call to <code><a href="../reference/transactions.html">dbCommit()</a></code>. Data written in a transaction must persist after the transaction is committed. For example, a table that is missing when the transaction is started but is created and populated during the transaction must exist and contain the data added there both during and after the transaction, and also in a new connection.
+Actual support for transactions may vary between backends. A transaction is initiated by a call to <code><a href="../reference/transactions.html">dbBegin()</a></code> and committed by a call to <code><a href="../reference/transactions.html">dbCommit()</a></code>. Data written in a transaction must persist after the transaction is committed. For example, a record that is missing when the transaction is started but is created during the transaction must exist both during and after the transaction, and also in a new connection.
 </p>
 <p>
-A transaction can also be aborted with <code><a href="../reference/transactions.html">dbRollback()</a></code>. All data written in such a transaction must be removed after the transaction is rolled back. For example, a table that is missing when the transaction is started but is created during the transaction must not exist anymore after the rollback.
+A transaction can also be aborted with <code><a href="../reference/transactions.html">dbRollback()</a></code>. All data written in such a transaction must be removed after the transaction is rolled back. For example, a record that is missing when the transaction is started but is created during the transaction must not exist anymore after the rollback.
 </p>
 <p>
 Disconnection from a connection with an open transaction effectively rolls back the transaction. All data written in such a transaction must be removed after the transaction is rolled back.

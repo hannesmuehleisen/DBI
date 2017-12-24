@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get DBMS metadata — dbGetInfo • DBI</title>
+<title>Quote literal values — dbQuoteLiteral • DBI</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -99,94 +99,79 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get DBMS metadata</h1>
+    <h1>Quote literal values</h1>
     </div>
 
     
-    <p>Get DBMS metadata</p>
+    <p>Call these methods to generate a string that is suitable for
+use in a query as a literal value of the correct type, to make sure that you
+generate valid SQL and avoid SQL injection.</p>
     
 
-    <pre class="usage"><span class='fu'>dbGetInfo</span>(<span class='no'>dbObj</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>dbQuoteLiteral</span>(<span class='no'>conn</span>, <span class='no'>x</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dbObj</th>
-      <td><p>An object inheriting from <a href='DBIObject-class.html'>DBIObject</a>,
-i.e. <a href='DBIDriver-class.html'>DBIDriver</a>, <a href='DBIConnection-class.html'>DBIConnection</a>,
-or a <a href='DBIResult-class.html'>DBIResult</a></p></td>
+      <th>conn</th>
+      <td><p>A subclass of <a href='DBIConnection-class.html'>DBIConnection</a>, representing
+an active connection to an DBMS.</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>A vector to quote as string.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Other arguments to methods.</p></td>
+      <td><p>Other arguments passed on to methods.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>a named list</p>
-    
-    <h2 class="hasAnchor" id="implementation-notes"><a class="anchor" href="#implementation-notes"></a>Implementation notes</h2>
-
-    
-    <p>For <code>DBIDriver</code> subclasses, this should include the version of the
-package (<code>driver.version</code>) and the version of the underlying client
-library (<code>client.version</code>).</p>
-<p>For <code>DBIConnection</code> objects this should report the version of
-the DBMS engine (<code>db.version</code>), database name (<code>dbname</code>),
-username, (<code>username</code>), host (<code>host</code>), port (<code>port</code>), etc.
-It MAY also include any other arguments related to the connection
-(e.g., thread id, socket or TCP connection type). It MUST NOT include the
-password.</p>
-<p>For <code>DBIResult</code> objects, this should include the statement
-being executed (<code>statement</code>), how many rows have been fetched so far
-(in the case of queries, <code>row.count</code>), how many rows were affected
-(deleted, inserted, changed,
-(<code>rows.affected</code>), and if the query is complete (<code>has.completed</code>).</p>
-    <p>The default implementation for <code>DBIResult objects</code>
-constructs such a list from the return values of the corresponding methods,
-<code><a href='dbGetStatement.html'>dbGetStatement()</a></code>, <code><a href='dbGetRowCount.html'>dbGetRowCount()</a></code>,
-<code><a href='dbGetRowsAffected.html'>dbGetRowsAffected()</a></code>, and <code><a href='dbHasCompleted.html'>dbHasCompleted()</a></code>.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p>Other DBIDriver generics: <code><a href='DBIDriver-class.html'>DBIDriver-class</a></code>,
-  <code><a href='dbConnect.html'>dbConnect</a></code>, <code><a href='dbDataType.html'>dbDataType</a></code>,
-  <code><a href='dbDriver.html'>dbDriver</a></code>, <code><a href='dbIsValid.html'>dbIsValid</a></code>,
-  <code><a href='dbListConnections.html'>dbListConnections</a></code></p>
-<p>Other DBIConnection generics: <code><a href='DBIConnection-class.html'>DBIConnection-class</a></code>,
-  <code><a href='dbDataType.html'>dbDataType</a></code>, <code><a href='dbDisconnect.html'>dbDisconnect</a></code>,
-  <code><a href='dbExecute.html'>dbExecute</a></code>, <code><a href='dbExistsTable.html'>dbExistsTable</a></code>,
-  <code><a href='dbGetException.html'>dbGetException</a></code>, <code><a href='dbGetQuery.html'>dbGetQuery</a></code>,
-  <code><a href='dbIsValid.html'>dbIsValid</a></code>, <code><a href='dbListFields.html'>dbListFields</a></code>,
-  <code><a href='dbListResults.html'>dbListResults</a></code>, <code><a href='dbListTables.html'>dbListTables</a></code>,
-  <code><a href='dbReadTable.html'>dbReadTable</a></code>, <code><a href='dbRemoveTable.html'>dbRemoveTable</a></code>,
-  <code><a href='dbSendQuery.html'>dbSendQuery</a></code>, <code><a href='dbSendStatement.html'>dbSendStatement</a></code>,
-  <code><a href='dbWriteTable.html'>dbWriteTable</a></code></p>
-<p>Other DBIResult generics: <code><a href='DBIResult-class.html'>DBIResult-class</a></code>,
+    <p>Other DBIResult generics: <code><a href='DBIResult-class.html'>DBIResult-class</a></code>,
   <code><a href='dbBind.html'>dbBind</a></code>, <code><a href='dbClearResult.html'>dbClearResult</a></code>,
   <code><a href='dbColumnInfo.html'>dbColumnInfo</a></code>, <code><a href='dbFetch.html'>dbFetch</a></code>,
-  <code><a href='dbGetRowCount.html'>dbGetRowCount</a></code>,
+  <code>dbGetInfo</code>, <code><a href='dbGetRowCount.html'>dbGetRowCount</a></code>,
   <code><a href='dbGetRowsAffected.html'>dbGetRowsAffected</a></code>,
   <code><a href='dbGetStatement.html'>dbGetStatement</a></code>,
   <code><a href='dbHasCompleted.html'>dbHasCompleted</a></code>, <code><a href='dbIsValid.html'>dbIsValid</a></code>,
   <code><a href='dbQuoteIdentifier.html'>dbQuoteIdentifier</a></code>,
-  <code><a href='dbQuoteLiteral.html'>dbQuoteLiteral</a></code>, <code><a href='dbQuoteString.html'>dbQuoteString</a></code></p>
+  <code><a href='dbQuoteString.html'>dbQuoteString</a></code></p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># Quoting ensures that arbitrary input is safe for use in a query</span>
+<span class='no'>name</span> <span class='kw'>&lt;-</span> <span class='st'>"Robert'); DROP TABLE Students;--"</span>
+<span class='fu'>dbQuoteLiteral</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='no'>name</span>)</div><div class='output co'>#&gt; &lt;SQL&gt; 'Robert''); DROP TABLE Students;--'</div><div class='input'>
+<span class='co'># NAs become NULL</span>
+<span class='fu'>dbQuoteLiteral</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='fu'>c</span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='fl'>NA</span>))</div><div class='output co'>#&gt; &lt;SQL&gt; 1
+#&gt; &lt;SQL&gt; 2
+#&gt; &lt;SQL&gt; 3
+#&gt; &lt;SQL&gt; NULL</div><div class='input'>
+<span class='co'># Logicals become integers by default</span>
+<span class='fu'>dbQuoteLiteral</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='fu'>c</span>(<span class='fl'>TRUE</span>, <span class='fl'>FALSE</span>, <span class='fl'>NA</span>))</div><div class='output co'>#&gt; &lt;SQL&gt; 1
+#&gt; &lt;SQL&gt; 0
+#&gt; &lt;SQL&gt; NULL</div><div class='input'>
+<span class='co'># Raw vectors become hex strings by default</span>
+<span class='fu'>dbQuoteLiteral</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='fu'>list</span>(<span class='fu'>as.raw</span>(<span class='fl'>1</span>:<span class='fl'>3</span>), <span class='kw'>NULL</span>))</div><div class='output co'>#&gt; &lt;SQL&gt; X'010203'
+#&gt; &lt;SQL&gt; NULL</div><div class='input'>
+<span class='co'># SQL vectors are always passed through as is</span>
+<span class='no'>var_name</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='SQL.html'>SQL</a></span>(<span class='st'>"select"</span>)
+<span class='no'>var_name</span></div><div class='output co'>#&gt; &lt;SQL&gt; select</div><div class='input'><span class='fu'>dbQuoteLiteral</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='no'>var_name</span>)</div><div class='output co'>#&gt; &lt;SQL&gt; select</div><div class='input'>
+<span class='co'># This mechanism is used to prevent double escaping</span>
+<span class='fu'>dbQuoteLiteral</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='fu'>dbQuoteLiteral</span>(<span class='fu'><a href='ANSI.html'>ANSI</a></span>(), <span class='no'>name</span>))</div><div class='output co'>#&gt; &lt;SQL&gt; 'Robert''); DROP TABLE Students;--'</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#implementation-notes">Implementation notes</a></li>
-
       <li><a href="#see-also">See also</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
